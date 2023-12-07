@@ -4,11 +4,10 @@ const { nanoid } = require("nanoid")
 
 const contactsPath = path.join(__dirname, "db", "contacts.json")
 
-// TODO: задокументировать каждую функцию
+
 async function listContacts() {
    const data = await fs.readFile(contactsPath)
    const contacts = JSON.parse(data)
-   // console.log(contacts)
    return contacts
 
    // ...твой код. Возвращает массив контактов.
@@ -20,7 +19,6 @@ async function getContactById(contactId) {
    if (!result) {
       return null
    }
-   // console.log(result)
    return { result }
 
    // ...твой код. Возвращает объект контакта с таким id. Возвращает null, если объект с таким id не найден.
