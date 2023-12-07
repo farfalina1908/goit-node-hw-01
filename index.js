@@ -19,22 +19,33 @@ program.parse(process.argv)
 const argv = program.opts()
 
 // TODO: рефакторить
-function invokeAction({ action, id, name, email, phone }) {
+async function invokeAction({ action, id, name, email, phone }) {
    switch (action) {
       case "list":
-         // ...
+         const contacts = await contactsHandling.listContacts()
+         console.table(contacts)
          break
 
       case "get":
-         // ... id
+         const contact = await contactsHandling.getContactById(id)
+         if (!contact) {
+            throw new Error(`Contact with ID ${id} is not found`)
+         }
+         console.table(contact)
          break
 
       case "add":
-         // ... name email phone
+         const newContact = await contactsHandling.addContact(
+            name,
+            email,
+            phone
+         )
+         console.table(newContact)
          break
 
       case "remove":
-         // ... id
+         const removeContact = await contactsHandling.removeContact(id)
+         console.table(removeContact)
          break
 
       default:
