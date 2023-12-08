@@ -4,7 +4,6 @@ const { nanoid } = require("nanoid")
 
 const contactsPath = path.join(__dirname, "db", "contacts.json")
 
-
 async function listContacts() {
    const data = await fs.readFile(contactsPath)
    const contacts = JSON.parse(data)
@@ -35,8 +34,6 @@ async function removeContact(contactId) {
 
    await fs.writeFile(contactsPath, JSON.stringify(newContacts))
 
-   console.log(contacts[idx])
-
    return contacts[idx]
    // ...твой код. Возвращает объект удаленного контакта. Возвращает null, если объект с таким id не найден.
 }
@@ -46,8 +43,6 @@ async function addContact(name, email, phone) {
    const newContact = { id: nanoid(), name, email, phone }
    contacts.push(newContact)
    await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2))
-
-   console.log(newContact)
 
    return newContact
    // ...твой код. Возвращает объект добавленного контакта.
